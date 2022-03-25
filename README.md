@@ -1,5 +1,5 @@
 <h1 align="center">
-    Ship Traffic
+    Simulador de Tráfego
 </h1>
 
 ## 💻 Sobre o projeto
@@ -30,7 +30,7 @@
 
 ## 🚀 Como executar o projeto
 
-Executar o html ship-traffic.
+Executar o html Simulador-de-Tráfego.
 
 ---
 
