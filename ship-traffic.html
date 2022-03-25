@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Prova 2</title>
+        <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js"></script>
+    </head>
+
+<body>
+
+<style>
+
+    div{
+    width: 800px;
+    height: 800px;
+    border: 3px solid black;
+    }
+</style>
+
+<div></div>
+
+<p id="demo"></p>
+
+<script>
+
+// Inicializa o SVG.js
+
+var draw = SVG().addTo('div').size('800', '800');
+var x,y;
+var tam, ql, ang, i, j, col;
+
+
+
+// Cria as passagens
+
+draw.rect(800, 800).fill('#e0e094');
+draw.rect(209, 800).move(290, 0) .fill('#5da8cf')
+draw.rect(800, 209).move(0, 290).fill('#5da8cf')
+
+
+
+</script>
+<script>
+
+
+// Criando os sinalizadores
+
+var semaforoVermelho = draw.path() 
+semaforoVermelho.marker("end", 200, 250, function (add){ 
+
+    add.rect (40,120).center(50,40).fill("black")
+    add.rect (30,100).center(50,50).fill("#ff8c00")
+    add.circle(15).center(50,20).fill("red")
+    add.circle(15).center(50,50).fill("#363434")
+    add.circle(15).center(50,80).fill("#363434")
+    
+    })
+
+var semaforoAmarelo = draw.path()
+semaforoAmarelo.marker("end", 200, 250, function (add){
+
+    add.rect (40,120).center(50,40).fill("black")
+    add.rect (30, 100).center(50,50).fill("#ff8c00")
+    add.circle(15).center(50,20).fill("#363434")
+    add.circle(15).center(50,50).fill("yellow")
+    add.circle(15).center(50,80).fill("#363434")
+    }) 
+
+var semaforoVerde = draw.path()
+semaforoVerde.marker("end", 200, 250, function (add){ 
+
+    add.rect (40,120).center(50,40).fill("black")    
+    add.rect (30, 100).center(50,50).fill("#ff8c00")
+    add.circle(15).center(50,20).fill("#363434")
+    add.circle(15).center(50,50).fill("#363434")
+    add.circle(15).center(50,80).fill("green")
+    })
+
+
+// Criando o mar
+var sea = draw.image('./wave-pattern.svg')
+      .size(800, 800)
+      
+// Criando os barcos
+var ship = draw.image('./ship.svg')
+      .size(70, 70)
+      .rotate(180)
+
+// Criando a cidade
+draw.rect(520,340).fill('#c0c0c0').center(45,130)
+draw.rect(520,340).fill('#c0c0c0').center(742,660)
+draw.rect(520,340).fill('#c0c0c0').center(50,660)
+draw.rect(520,340).fill('#c0c0c0').center(739,130)
+draw.image('./city.svg').size(496,480).center(45,130)
+draw.image('./city.svg').size(496,480).center(742,660)
+draw.image('./city.svg').size(496,480).center(50,660)
+draw.image('./city.svg').size(496,480).center(739,130)
+
+// Gerando os barcos
+var ship1 = draw.use (ship) 
+ship1.move(100, 800); 
+
+var ship2 = draw.use (ship)
+ship2.move(400, 0).rotate(270); 
+
+// Semadoro da esquerda 
+var semaforoVermelho1 = draw.use(semaforoVermelho)
+semaforoVermelho1.move(315,302); 
+
+var semaforoAmarelo1 = draw.use(semaforoAmarelo)
+semaforoAmarelo1.move(315,302); 
+semaforoAmarelo1.hide()  
+
+var semaforoVerde1 = draw.use(semaforoVerde)
+semaforoVerde1.move(315,302); 
+semaforoVerde1.hide() 
+
+// Semaforo de baixo 
+var semaforoVermelho2 = draw.use(semaforoVermelho)
+semaforoVermelho2.move(573, 636); 
+semaforoAmarelo2 = draw.use(semaforoAmarelo)
+semaforoAmarelo2.move(573, 636); 
+semaforoAmarelo2.hide()
+semaforoVerde2 = draw.use(semaforoVerde)
+semaforoVerde2.move(573, 636); 
+semaforoVerde2.hide() 
+
+// Variaveis 
+var positionShipX = 0;
+var positionShipXY = 400;
+var positionShipY = 200;
+var angulo1 = 270;
+var angulo2 = 90;
+var shipTurn1 = Math.floor(Math.random() * 2);
+var shipTurn2 = Math.floor(Math.random() * 2); 
+
+// Funcao para fazer o Ship1 reto ou virar 
+
+var myShip1 = setInterval(moveShip1, 7)
+
+async function moveShip1() {     
+
+    if (shipTurn1 == 0 && positionShipX == 400){ 
+        ship1.rotate(angulo1); 
+        positionShipX++; 
+    }
+
+ship1.move(positionShipX, positionShipXY);
+
+if(positionShipX >= 1000 ) {
+    shipTurn1 = Math.floor(Math.random() * 2);
+    ship1.remove();
+    ship1 = draw.use (ship) 
+    ship1.move(100, 500); 
+
+    semaforoVermelho1.hide()
+    semaforoAmarelo1.show()
+    semaforoVerde1.hide()
+    positionShipX = 0 
+    } else if (positionShipX == 250) { 
+        semaforoVermelho1.show()
+        semaforoAmarelo1.hide()
+        semaforoVerde1.hide()
+        clearInterval(myShip1)
+        await sleep (10000).then (() => {
+             positionShipX = positionShipX +1;
+             myShip1 = setInterval (moveShip1, 7);
+             semaforoVermelho1.hide()
+             semaforoAmarelo1.hide()
+             semaforoVerde1.show();
+        });
+        positionShipX = positionShipX + 1; 
+    } else{ 
+        positionShipX = positionShipX + 1; 
+    }
+
+};
+
+// Funcao para fazer o Ship2 reto ou virar 
+
+var myShip2 = setInterval(moveShip2, 6)
+
+async function moveShip2() {     
+
+    if (shipTurn2 == 0 && positionShipY == 800){ 
+        ship2.rotate(angulo2); 
+        positionShipY++; 
+    }
+
+ship2.move(positionShipY-800, 0);
+
+if(positionShipY >= 1300 ) {
+    shipTurn2 = Math.floor(Math.random() * 2);
+    ship2.remove();
+    ship2 = draw.use (ship) 
+    ship2.move(400, 0).rotate(270); 
+
+    semaforoVermelho2.hide()
+    semaforoAmarelo2.show()
+    semaforoVerde2.hide()
+    positionShipY = 200 
+    } else if (positionShipY == 670) { 
+        semaforoVermelho2.show()
+        semaforoAmarelo2.hide()
+        semaforoVerde2.hide()
+        clearInterval(myShip2)
+        await sleep (14000)
+        .then (() => {
+             positionShipY = positionShipY +1;
+             myShip2 = setInterval (moveShip2, 6);
+             semaforoVermelho2.hide()
+             semaforoAmarelo2.hide()
+             semaforoVerde2.show();
+        });
+        positionShipY = positionShipY + 1; 
+    } else{ 
+        positionShipY = positionShipY + 1; 
+    }
+
+};
+
+// Função sleep
+
+function sleep(ms){
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+</script>
+
+</body>
+
+</html>
