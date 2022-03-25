@@ -1,5 +1,5 @@
 <h1 align="center">
-    Simulador de Tráfego
+    Simulador de tráfego
 </h1>
 
 ## 💻 Sobre o projeto
