@@ -10,11 +10,11 @@
 
 ## ⚙️ Funcionalidades
 
-- ⚪ Barcos se movem aleatoriamente nos sentidos
-- ⚪ Animação Infinita
-- ⚪ Sinalizador simulando funcionamento de semafaros reais.
-- ⚪ Barcos em SVG
-- ⚪ Montagem do cenário em SVG
+- Barcos se movem aleatoriamente nos sentidos
+- Animação Infinita
+- Sinalizador simulando funcionamento de semafaros reais.
+- Barcos em SVG
+- Montagem do cenário em SVG
 
 ---
 
