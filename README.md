@@ -10,20 +10,20 @@
 
 ## ⚙️ Funcionalidades
 
-- Barcos se movem aleatoriamente nos sentidos
-- Animação Infinita
-- Sinalizador simulando funcionamento de semafaros reais.
-- Barcos em SVG
-- Montagem do cenário em SVG
+- Barcos se movem aleatoriamente nos sentidos;
+- Animação Infinita;
+- Sinalizador simulando funcionamento de semafaros reais;
+- Barcos em SVG.
+- Montagem do cenário em SVG.
 
 ---
 
 ## 📷 Imagens do projeto
 
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
-  <img alt="NextLevelWeek" title="Imagem - Traffic Light Car" src="assets/Imagem-Funcionamento-1.jpg" width="400px">
+  <img alt="NextLevelWeek" title="Imagem - Simulador de tráfego, Sinaleiro fechado" src="assets/Imagem-Funcionamento-1.jpg" width="400px">
 
-  <img alt="NextLevelWeek" title="Imagem - Traffic Light Car" src="assets/Imagem-Funcionamento-2.jpg" width="400px">
+  <img alt="NextLevelWeek" title="Imagem - Simulador de tráfego, Sinaleiro aberto" src="assets/Imagem-Funcionamento-2.jpg" width="400px">
 </p>
 
 ---
