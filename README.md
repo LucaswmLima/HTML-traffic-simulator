@@ -36,7 +36,7 @@ Executar o html Simulador-de-Tráfego.
 
 ## 🛠 Tecnologias utilizadas
 
-Foram utilizadas as seguintes ferramentas: HTML, CSS, Javascript, Svg.js
+Foram utilizadas as seguintes ferramentas: HTML, CSS, Javascript.
 
 ---
 
